@@ -6,12 +6,12 @@ import java.util.*
 @Entity
 class Note(
 
-    @PrimaryKey(autoGenerate = true)
-    var id: Long? = null,
-
     var title: String,
     var text: String,
-    var lastUpdated: Date
+    var lastUpdated: Date,
+
+    @PrimaryKey(autoGenerate = true)
+    var id: Long? = null
 )
 
 class Converters{

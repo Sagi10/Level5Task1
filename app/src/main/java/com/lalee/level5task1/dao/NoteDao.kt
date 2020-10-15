@@ -11,7 +11,7 @@ interface NoteDao {
     suspend fun insertNote(note: Note)
 
     @Query("SELECT * FROM Note LIMIT 1")
-    suspend fun getNotePad(): LiveData<Note?>
+    fun getNotePad(): LiveData<Note?>
 
     @Update
     suspend fun updateNote(note: Note)
