@@ -1,22 +1,38 @@
-package com.lalee.level5task1
+package com.lalee.level5task1.ui
 
 import android.os.Bundle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.navigation.findNavController
+import com.lalee.level5task1.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(findViewById(R.id.toolbar))
 
-        findViewById<FloatingActionButton>(R.id.fab).setOnClickListener { view ->
-            findNavController(R.id.nav_host_fragment).navigate(R.id.action_FirstFragment_to_SecondFragment)
+
+        fab.setOnClickListener {
+            findNavController(R.id.nav_host_fragment).navigate(
+                R.id.action_FirstFragment_to_SecondFragment
+            )
+        }
+
+        fabToggler()
+    }
+
+    private fun fabToggler() {
+        findNavController(R.id.nav_host_fragment).addOnDestinationChangedListener { _, destination, _ ->
+            if (destination.id in arrayOf(R.id.SecondFragment)) {
+                fab.hide()
+            } else {
+                fab.show()
+            }
         }
     }
 
